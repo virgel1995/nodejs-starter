@@ -16,4 +16,4 @@ export const awsSecretAccessKey = AWS_SECRET_ACCESS_KEY;
 export const awsRegion = AWS_REGION;
 export const bucketName = BUCKET_NAME;
 export const prefix = '/api';
-export const specs = "/docs";
+export const specs = "/";

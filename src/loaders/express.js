@@ -3,12 +3,16 @@ import cors from 'cors';
 import compression from 'compression';
 import morgan from 'morgan';
 import helmet from 'helmet';
-import { prefix } from './../config/index.js';
+import { prefix ,specs, swaggerConfig } from './../config/index.js';
 import routes from './../api/routes/index.js';
 import { logger, printer } from '../utils/index.js';
 import { rateLimiter } from '../api/middlewares/index.js';
 import { jwtSecretKey } from '../config/index.js';
 import bodyParser from 'body-parser';
+	import swaggerJsdoc from 'swagger-jsdoc';
+import { serve, setup } from 'swagger-ui-express';
+
+const specDoc = swaggerJsdoc(swaggerConfig);
 
 export default (app) => {
   process.on('uncaughtException', async (error) => {
@@ -40,6 +44,10 @@ export default (app) => {
   app.use(rateLimiter);
   app.use(prefix, routes);
 
+app.use(specs, serve);
+app.get(specs, setup(specDoc, { explorer: true }));
+
+/*
   app.get('/', (_req, res) => {
 		
     return res.status(200).json({
@@ -50,7 +58,7 @@ export default (app) => {
       resultCode: '00004'
     }).end();
 		
-  });
+  });*/
 	//print all api routes to console
 printer(app)
   app.use((req, res, next) => {
