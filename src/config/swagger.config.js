@@ -18,7 +18,7 @@ export default {
     basePath: '/',
     servers: [
       {
-        url: 'https://nody.cyclic.app/',
+        url: 'http://localhost:3000/',
       },
     ],
   },

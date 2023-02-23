@@ -24,8 +24,7 @@
     "swagger-ui-express": "^4.1.6"
   },
   "scripts": {
-    "start": "node .",
-    "Start": "node ."
+    "start": "node ./src/app.js"
   },
   "repository": {
     "type": "git",
