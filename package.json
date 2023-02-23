@@ -2,8 +2,9 @@
   "name": "nodejs-starter",
   "version": "1.0.0",
   "description": "You can use this template when you're starting a new project. It contains general concepts, you can customize it according to your needs.",
-  "main": "src/app.js",
+  "main": "app.js",
   "dependencies": {
+    "aws-sdk": "^2.1321.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "compression": "^1.7.4",
@@ -23,7 +24,6 @@
     "swagger-jsdoc": "^6.0.8",
     "swagger-ui-express": "^4.1.6"
   },
-  "devDependencies": {},
   "scripts": {
     "start": "node .",
     "Start": "node ."

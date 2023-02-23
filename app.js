@@ -1,6 +1,6 @@
 import express from 'express';
-import { port } from './config/index.js';
-import loader from './loaders/index.js';
+import { port } from './src/config/index.js';
+import loader from './src/loaders/index.js';
 
 const app = express();
 
