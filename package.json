@@ -4,7 +4,6 @@
   "description": "You can use this template when you're starting a new project. It contains general concepts, you can customize it according to your needs.",
   "main": "app.js",
   "dependencies": {
-    "aws-sdk": "^2.855.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "compression": "^1.7.4",
