@@ -1,15 +1,6 @@
 import { createTransport } from 'nodemailer';
 import getText from './lang/get-text.js';
 import errorHelper from './helpers/error-helper.js';
-import { awsAccessKey, awsSecretAccessKey, awsRegion } from '../config/index.js';
-/*import pkg from 'aws-sdk';
-const { config, SES } = pkg;
-
-config.update({
-  accessKeyId: awsAccessKey,
-  secretAccessKey: awsSecretAccessKey,
-  region: awsRegion
-});*/
 
 export default async (email, name, confirmCode, lang, type, req, res) => {
 	    const smtpEndpoint = "smtp.sendgrid.net";

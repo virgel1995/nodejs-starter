@@ -1,7 +1,8 @@
 import { User } from '../../../../models/index.js';
 import { validateEditUser } from '../../../validators/user.validator.js';
 import { errorHelper, logger, getText, turkishToEnglish } from '../../../../utils/index.js';
-import { awsAccessKey, awsSecretAccessKey, awsRegion, bucketName } from '../../../../config/index.js';
+import { bucketName } from '../../../../config/index.js';
+/*
 import aws from 'aws-sdk';
 const { S3 } = aws;
 
@@ -11,7 +12,7 @@ const s3 = new S3({
   region: awsRegion,
   signatureVersion: 'v4',
 });
-
+*/
 export default async (req, res) => {
   const { error } = validateEditUser(req.body);
   if (error) {
@@ -52,13 +53,13 @@ export default async (req, res) => {
     Body: req.file.buffer,
     ContentType: req.file.mimetype,
   };
-
+/*
   await s3.upload(params).promise().then((data) => {
     user.photoUrl = data.Location;
   }).catch(err => {
     hasError = true;
     return res.status(500).json(errorHelper('00087', req, err.message)).end();
-  });
+  });*/
   }
 
   if (!hasError) {
