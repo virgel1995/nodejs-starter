@@ -62,7 +62,7 @@ export function validateEditUser(body) {
   const schema = Joi.object({
     name: Joi.string().min(3).max(24),
     username: Joi.string().min(3).max(15),
-    language: Joi.string().valid('tr', 'en'),
+    language: Joi.string().valid('tr', 'en', 'ar'),
     gender: Joi.string().valid('male', 'female', 'other'),
     birthDate: Joi.date()
   });

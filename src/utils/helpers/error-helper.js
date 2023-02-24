@@ -1,6 +1,7 @@
 import logger from '../logger.js';
 import en from '../lang/en.js';
 import tr from '../lang/tr.js';
+import ar from '../lang/ar.js';
 
 export default (code, req, errorMessage) => {
   //NOTE: This control routes every server error to the same lang key.
@@ -12,7 +13,7 @@ export default (code, req, errorMessage) => {
 
   const enMessage = en[key];
   const trMessage = tr[key];
-
+  const arMedsae = ar[key];
   if (enMessage.includes('server error')) {
     logger(code, userId, errorMessage, 'Server Error', req);
   } else {
@@ -22,7 +23,8 @@ export default (code, req, errorMessage) => {
   return {
     'resultMessage': {
       'en': enMessage,
-      'tr': trMessage
+      'tr': trMessage,
+			'ar': arMedsage
     },
     'resultCode': code
   };

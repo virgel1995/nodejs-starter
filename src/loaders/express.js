@@ -11,6 +11,8 @@ import { jwtSecretKey } from '../config/index.js';
 import bodyParser from 'body-parser';
 	import swaggerJsdoc from 'swagger-jsdoc';
 import { serve, setup } from 'swagger-ui-express';
+import { facebookStargy }  from '../api/controllers/user/index.js';
+import csrf from '@dr.pogodin/csurf';
 
 const specDoc = swaggerJsdoc(swaggerConfig);
 
@@ -37,15 +39,24 @@ export default (app) => {
   app.use(morgan('dev'));
   app.use(helmet());
   app.use(compression());
-  app.use(express.static('public'));
+	
+	app.use("/assets",express.static('public'));
   app.disable('x-powered-by');
   app.disable('etag');
 
   app.use(rateLimiter);
+	//required here to run first 
+	// stargies for social authentication 
+	facebookStargy();
+	// all api routes 
   app.use(prefix, routes);
-
+// swagger for preview all api routes
 app.use(specs, serve);
 app.get(specs, setup(specDoc, { explorer: true }));
+	
+	//csrf for protect requests 
+//https://dr.pogodin.studio/docs/csurf
+	app.use(csrf({ cookie: true }))
 
 /*
   app.get('/', (_req, res) => {
@@ -53,14 +64,18 @@ app.get(specs, setup(specDoc, { explorer: true }));
     return res.status(200).json({
       resultMessage: {
         en: 'Project is successfully working...',
-        tr: 'Proje başarılı bir şekilde çalışıyor...'
+        tr: 'Proje başarılı bir şekilde çalışıyor...',
+				
+	ar: ' تم تشغيل المشروع بنجاح'
       },
       resultCode: '00004'
     }).end();
 		
   });*/
+	
 	//print all api routes to console
 printer(app)
+	//set headers
   app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers',
@@ -72,13 +87,13 @@ printer(app)
     }
     next();
   });
-
+// check routes for 404 page
   app.use((_req, _res, next) => {
     const error = new Error('Endpoint could not find!');
     error.status = 404;
     next(error);
   });
-
+// check error level for handling 
   app.use((error, req, res, _next) => {
     res.status(error.status || 500);
     let resultCode = '00015';
@@ -94,7 +109,8 @@ printer(app)
     return res.json({
       resultMessage: {
         en: error.message,
-        tr: error.message
+        tr: error.message,
+				ar: error.message
       },
       resultCode: resultCode,
     });

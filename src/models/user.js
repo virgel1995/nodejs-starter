@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+
 const { Schema, model } = mongoose;
 
 const userSchema = new Schema({
@@ -9,6 +10,9 @@ const userSchema = new Schema({
     lowercase: true,
     match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
   },
+	fb_id:{
+		type :String
+	},
   password: {
     type: String, required: true, select: false
   },
@@ -27,7 +31,7 @@ const userSchema = new Schema({
   },
   language: {
     type: String,
-    enum: ['tr', 'en'],
+    enum: ['tr', 'en',"ar"],
     default: 'en',
   },
   isPremium: {
@@ -42,15 +46,14 @@ const userSchema = new Schema({
     type: String,
   },
   timezone: {
-    type: Number
+    type: String
   },
   birthDate: {
     type: Date
   },
   photoUrl: {
     type: String,
-    default:
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/1200px-Node.js_logo.svg.png',
+		default: "assets/img/avatar.jpg",
   },
   //NOTE: To check whether the account is active or not. When user deletes the account, you can store the information anonymously.
   isActivated: {
@@ -60,7 +63,7 @@ const userSchema = new Schema({
   //NOTE: To check whether the user skipped the email-verification step or not. You can delete the unverified accounts day by day.
   isVerified: {
     type: Boolean,
-    required: true
+    default: true,
   },
   deviceId: {
     type: String,

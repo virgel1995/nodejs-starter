@@ -14,3 +14,6 @@ export { default as editUser } from './edit/edit-user.js'
 // OTHER
 export { default as getUser } from './get-user.js'
 export { default as deleteUser } from './delete-user.js'
+
+// SOCIAL 
+export { default as facebookStargy } from "./social/facebook.js"

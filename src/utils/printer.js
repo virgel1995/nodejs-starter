@@ -8,7 +8,7 @@
   } else if (layer.name === 'router' && layer.handle.stack) {
     layer.handle.stack.forEach(print.bind(null, path.concat(split(layer.regexp))))
   } else if (layer.method) {
-   console.log('%s /%s',
+   console.log('%s: /%s',
       layer.method.toUpperCase(),
       path.concat(split(layer.regexp)).filter(Boolean).join('/'))
   }

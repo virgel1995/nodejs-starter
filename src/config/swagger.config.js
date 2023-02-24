@@ -33,6 +33,7 @@ export default {
     "src/utils/helpers/*.js",
     "src/api/controllers/user/*.js",
     "src/api/controllers/user/edit/*.js",
-    "src/api/controllers/user/auth/*.js"
+    "src/api/controllers/user/auth/*.js",
+	"src/api/controllers/user/social/*.js"	
   ]
 };
